@@ -1,5 +1,5 @@
 [project]
-name = "matcha-tts"
+name = "matcha"
 version = "0.0.1"
 requires-python = ">=3.11"
 dependencies = [
@@ -36,9 +36,6 @@ dependencies = [
   "seaborn",
 ]
 
-[build-system]
-requires = ["setuptools", "wheel", "cython", "numpy", "packaging"]
-
 [tool.black]
 line-length = 120
 target-version = ['py310']
@@ -63,9 +60,21 @@ exclude = '''
 '''
 
 [tool.uv]
-package = false
+package = true
 override-dependencies = ["librosa>=0.11.0", "numba>=0.61.2"]
 
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling>=1,<2"]
+
+# [build-system]
+# requires = ["setuptools", "wheel", "cython", "numpy", "packaging"]
+
+[project.scripts]
+matcha-data-stats = "matcha.utils.generate_data_statistics:main"
+matcha-tts = "matcha.cli:cli"
+matcha-tts-app = "matcha.app:main"
+matcha-tts-get-durations = "matcha.utils.get_durations_from_trained_model:main"
 
 [tool.pytest.ini_options]
 addopts = ["--color=yes", "--durations=0", "--strict-markers", "--doctest-modules"]

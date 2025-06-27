@@ -1885,9 +1885,9 @@ wheels = [
 ]
 
 [[package]]
-name = "matcha-tts"
+name = "matcha"
 version = "0.0.1"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "conformer" },
     { name = "cython" },
