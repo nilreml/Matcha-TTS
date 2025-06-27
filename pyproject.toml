@@ -1,5 +1,43 @@
+[project]
+name = "matcha-tts"
+version = "0.0.1"
+requires-python = ">=3.11"
+dependencies = [
+  "torch",
+  "torchvision",
+  "lightning",
+  "torchmetrics",
+  "hydra-core",
+  "hydra-colorlog",
+  "hydra-optuna-sweeper",
+  "rootutils",
+  "pre-commit",
+  "rich",
+  "pytest",
+  "phonemizer",
+  "tensorboard",
+  "librosa",
+  "cython",
+  "numpy",
+  "einops",
+  "inflect",
+  "unidecode",
+  "scipy",
+  "torchaudio",
+  "matplotlib",
+  "pandas",
+  "conformer",
+  "diffusers",
+  "notebook",
+  "ipywidgets",
+  "gradio",
+  "gdown",
+  "wget",
+  "seaborn",
+]
+
 [build-system]
-requires = ["setuptools", "wheel", "cython==0.29.35", "numpy==1.24.3", "packaging"]
+requires = ["setuptools", "wheel", "cython", "numpy", "packaging"]
 
 [tool.black]
 line-length = 120
@@ -24,28 +62,23 @@ exclude = '''
 )
 '''
 
+[tool.uv]
+package = false
+override-dependencies = ["librosa>=0.11.0", "numba>=0.61.2"]
+
+
 [tool.pytest.ini_options]
-addopts = [
-  "--color=yes",
-  "--durations=0",
-  "--strict-markers",
-  "--doctest-modules",
-]
-filterwarnings = [
-  "ignore::DeprecationWarning",
-  "ignore::UserWarning",
-]
-log_cli = "True"
-markers = [
-  "slow: slow tests",
-]
+addopts = ["--color=yes", "--durations=0", "--strict-markers", "--doctest-modules"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
+log_cli = true
+markers = ["slow: slow tests"]
 minversion = "6.0"
 testpaths = "tests/"
 
 [tool.coverage.report]
 exclude_lines = [
-    "pragma: nocover",
-    "raise NotImplementedError",
-    "raise NotImplementedError()",
-    "if __name__ == .__main__.:",
+  "pragma: nocover",
+  "raise NotImplementedError",
+  "raise NotImplementedError()",
+  "if __name__ == .__main__.:",
 ]
